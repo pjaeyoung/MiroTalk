@@ -32,7 +32,7 @@ export default function QuestionListItem({
       return;
     }
     const { length } = e.target.value;
-    if (length > 4) {
+    if (length > 100) {
       return;
     }
     setValue(e.target.value);
