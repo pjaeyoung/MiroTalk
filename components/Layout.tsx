@@ -1,3 +1,5 @@
+import HeaderWrapper from './HeaderWrapper';
+
 type LayoutProps = {
   header: JSX.Element;
   children: JSX.Element;
@@ -5,9 +7,9 @@ type LayoutProps = {
 
 export default function Layout({ header, children }: LayoutProps): JSX.Element {
   return (
-    <div>
-      <header>{header}</header>
+    <>
+      <HeaderWrapper>{header}</HeaderWrapper>
       {children}
-    </div>
+    </>
   );
 }

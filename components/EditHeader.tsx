@@ -1,4 +1,4 @@
-export function EditHeader(): JSX.Element {
+export default function EditHeader(): JSX.Element {
   return (
     <>
       <button>설정버튼</button>
@@ -9,8 +9,4 @@ export function EditHeader(): JSX.Element {
       </div>
     </>
   );
-}
-
-export function ModeHeader(): JSX.Element {
-  return <></>;
 }

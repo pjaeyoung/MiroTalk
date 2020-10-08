@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import Layout from '../components/Layout';
-import { EditHeader } from '../components/Header';
+import EditHeader from '../components/EditHeader';
 import Input from '../components/Input';
 import List from '../components/List';
 import QuestionListItem from '../components/QuestionListItem';
