@@ -6,15 +6,19 @@
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "airbnb",
+    "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
   "parserOptions": {
@@ -30,10 +34,14 @@
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/button-has-type": 0,
+    "import/extensions": 0,
+    "no-console": "warn",
     "no-nested-ternary": 0,
-    "no-console":"warn",
-    "react/prop-types": "off",
-    "react/jsx-props-no-spreading":0
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0
   },
   "globals": {
     "React": "writable"
