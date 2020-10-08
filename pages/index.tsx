@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Layout from '../components/Layout';
 import { EditHeader } from '../components/Header';
 import Input from '../components/Input';
@@ -11,13 +11,20 @@ type Question = {
   isSelected: boolean;
 };
 
+interface InputEventTarget extends EventTarget {
+  value: string;
+}
+interface InputEvent extends FormEvent {
+  target: InputEventTarget;
+}
+
 export default function App(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
-  const onChange = (e) => {
+  const onChange = (e: InputEvent) => {
     setInput(e.target.value);
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
     setQuestions((prev) => {
       let lastId = 0;
@@ -27,6 +34,10 @@ export default function App(): JSX.Element {
       return [...prev, { id: lastId, text: input, isSelected: false }];
     });
     setInput('');
+  };
+
+  const deleteQuestion = (id: number): void => {
+    setQuestions((prev) => prev.filter((question) => question.id !== id));
   };
 
   return (
@@ -41,7 +52,11 @@ export default function App(): JSX.Element {
         />
         <List>
           {questions.map((question) => (
-            <QuestionListItem key={question.id} question={question} />
+            <QuestionListItem
+              key={question.id}
+              question={question}
+              deleteQuestion={deleteQuestion}
+            />
           ))}
         </List>
       </>
