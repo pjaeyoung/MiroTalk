@@ -26,6 +26,10 @@ export default function App(): JSX.Element {
   };
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
+    if (input.length === 0) {
+      return;
+    }
+
     setQuestions((prev) => {
       let lastId = 0;
       if (prev.length !== 0) {
@@ -38,6 +42,13 @@ export default function App(): JSX.Element {
 
   const deleteQuestion = (id: number): void => {
     setQuestions((prev) => prev.filter((question) => question.id !== id));
+  };
+
+  const editQuestion = (id: number, text: string): void => {
+    setQuestions((prev) => {
+      const index = prev.findIndex((question) => question.id === id);
+      return [...prev.slice(0, index), { id, text, isSelected: false }, ...prev.slice(index + 1)];
+    });
   };
 
   return (
@@ -56,6 +67,7 @@ export default function App(): JSX.Element {
               key={question.id}
               question={question}
               deleteQuestion={deleteQuestion}
+              editQuestion={editQuestion}
             />
           ))}
         </List>
