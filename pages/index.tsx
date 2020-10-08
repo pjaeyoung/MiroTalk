@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import EditHeader from '../components/EditHeader';
 import Input from '../components/Input';
@@ -18,9 +18,35 @@ interface InputEvent extends FormEvent {
   target: InputEventTarget;
 }
 
+const QUESTIONS = 'Questions';
+
 export default function App(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
+
+  const saveQuestions = (): void => {
+    localStorage.setItem(QUESTIONS, JSON.stringify(questions));
+  };
+
+  const onKeyDown = (e): boolean => {
+    if (e.key === 's' && e.ctrlKey) {
+      e.preventDefault();
+      saveQuestions();
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    setTimeout(saveQuestions, 3000);
+  }, [questions]);
+
   const onChange = (e: InputEvent) => {
     const { length } = e.target.value;
     if (length > 100) {
