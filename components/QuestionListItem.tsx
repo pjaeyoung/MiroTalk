@@ -31,6 +31,10 @@ export default function QuestionListItem({
     if (!editable) {
       return;
     }
+    const { length } = e.target.value;
+    if (length > 4) {
+      return;
+    }
     setValue(e.target.value);
   };
   const toggleEditMode = (toggle) => {

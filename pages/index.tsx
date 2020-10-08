@@ -22,6 +22,10 @@ export default function App(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
   const onChange = (e: InputEvent) => {
+    const { length } = e.target.value;
+    if (length > 100) {
+      return;
+    }
     setInput(e.target.value);
   };
   const onSubmit = (e: FormEvent): void => {
