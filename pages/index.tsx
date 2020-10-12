@@ -5,11 +5,11 @@ import Input from '../components/Input';
 import List from '../components/List';
 import QuestionListItem from '../components/QuestionListItem';
 
-type Question = {
+interface Question {
   id: number;
   text: string;
   isSelected: boolean;
-};
+}
 
 interface InputEventTarget extends EventTarget {
   value: string;
@@ -18,21 +18,24 @@ interface InputEvent extends FormEvent {
   target: InputEventTarget;
 }
 
-const QUESTIONS = 'Questions';
+const QUESTIONS = 'Questions'; // localStorage key
 
 export default function App(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>(null);
   const [input, setInput] = useState<string>('');
 
+  // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
   useEffect(() => {
     localStorage.setItem(QUESTIONS, JSON.stringify(questions));
   }, [questions]);
 
+  // localStorage에서 기존 질문들 가져오기
   useEffect(() => {
     const questionsInLocalStorage = JSON.parse(localStorage.getItem(QUESTIONS)) || [];
     setQuestions(questionsInLocalStorage);
   }, []);
 
+  // 질문 작성 입력창 : state 처리
   const onChange = (e: InputEvent) => {
     const { length } = e.target.value;
     if (length > 100) {
@@ -40,6 +43,8 @@ export default function App(): JSX.Element {
     }
     setInput(e.target.value);
   };
+
+  // 질문 작성 입력창 : 질문 생성
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
     if (input.length === 0) {

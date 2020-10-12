@@ -1,12 +1,12 @@
 import { FormEvent } from 'react';
 
-type InputProps = {
+interface InputProps {
   value: string;
   placeholder: string;
   onSubmit: (e: FormEvent) => void;
   onChange: (e: FormEvent) => void;
   SubElement: JSX.Element;
-};
+}
 
 export default function Input({
   value,
