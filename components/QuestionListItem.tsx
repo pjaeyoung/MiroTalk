@@ -1,16 +1,17 @@
 import { DetailedHTMLProps, FormEvent, InputHTMLAttributes, useState } from 'react';
 
-type Question = {
+type SubmitEvent = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+
+interface Question {
   id: number;
   text: string;
   isSelected: boolean;
-};
-
-type QuestionListItemProps = {
+}
+interface QuestionListItemProps {
   question: Question;
   deleteQuestion: (id: number) => void;
   editQuestion: (id: number, text: string) => void;
-};
+}
 
 interface InputEventTarget extends EventTarget {
   value: string;
@@ -27,6 +28,7 @@ export default function QuestionListItem({
   const [value, setValue] = useState<string>(text);
   const [editable, setEditable] = useState<boolean>(false);
 
+  // 질문 수정 입력창 : state 처리
   const onChange = (e: InputEvent) => {
     if (!editable) {
       return;
@@ -37,13 +39,14 @@ export default function QuestionListItem({
     }
     setValue(e.target.value);
   };
+
+  // 질문 수정 모드 변경
   const toggleEditMode = (toggle) => {
     setEditable(toggle);
   };
 
-  const onSubmit = (
-    e: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  ) => {
+  // 질문 수정 입력창 : 질문 수정
+  const onSubmit = (e: SubmitEvent) => {
     if (e.key !== 'Enter') {
       return;
     }
