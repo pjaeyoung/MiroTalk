@@ -21,31 +21,17 @@ interface InputEvent extends FormEvent {
 const QUESTIONS = 'Questions';
 
 export default function App(): JSX.Element {
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<Question[]>(null);
   const [input, setInput] = useState<string>('');
 
-  const saveQuestions = (): void => {
+  useEffect(() => {
     localStorage.setItem(QUESTIONS, JSON.stringify(questions));
-  };
-
-  const onKeyDown = (e): boolean => {
-    if (e.key === 's' && e.ctrlKey) {
-      e.preventDefault();
-      saveQuestions();
-    }
-    return false;
-  };
-
-  useEffect(() => {
-    window.addEventListener('keydown', onKeyDown);
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, []);
-
-  useEffect(() => {
-    setTimeout(saveQuestions, 3000);
   }, [questions]);
+
+  useEffect(() => {
+    const questionsInLocalStorage = JSON.parse(localStorage.getItem(QUESTIONS)) || [];
+    setQuestions(questionsInLocalStorage);
+  }, []);
 
   const onChange = (e: InputEvent) => {
     const { length } = e.target.value;
@@ -82,7 +68,7 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <Layout header={<EditHeader />}>
+    <Layout loading={questions === null} header={<EditHeader />}>
       <>
         <Input
           placeholder="100자 이내로 질문을 작성해주세요"
@@ -92,7 +78,7 @@ export default function App(): JSX.Element {
           onSubmit={onSubmit}
         />
         <List>
-          {questions.map((question) => (
+          {questions?.map((question) => (
             <QuestionListItem
               key={question.id}
               question={question}
