@@ -21,7 +21,8 @@ interface InputEvent extends FormEvent {
 const QUESTIONS = 'Questions'; // localStorage key
 
 export default function App(): JSX.Element {
-  const [questions, setQuestions] = useState<Question[]>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
 
   // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
@@ -33,6 +34,7 @@ export default function App(): JSX.Element {
   useEffect(() => {
     const questionsInLocalStorage = JSON.parse(localStorage.getItem(QUESTIONS)) || [];
     setQuestions(questionsInLocalStorage);
+    setLoading(false);
   }, []);
 
   // 질문 작성 입력창 : state 처리
@@ -73,7 +75,7 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <Layout loading={questions === null} header={<EditHeader />}>
+    <Layout loading={loading} header={<EditHeader />}>
       <>
         <Input
           placeholder="100자 이내로 질문을 작성해주세요"
@@ -83,7 +85,7 @@ export default function App(): JSX.Element {
           onSubmit={onSubmit}
         />
         <List>
-          {questions?.map((question) => (
+          {questions.map((question) => (
             <QuestionListItem
               key={question.id}
               question={question}
