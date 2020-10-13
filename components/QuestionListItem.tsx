@@ -58,7 +58,7 @@ export default function QuestionListItem({
 
   return (
     <li>
-      <button>::</button>
+      <button className="btn-move">::</button>
       <input value={value} onChange={onChange} onKeyDown={onSubmit} />
       <div>
         <button onClick={() => toggleEditMode(true)}>수정</button>
