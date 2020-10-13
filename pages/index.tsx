@@ -76,25 +76,23 @@ export default function App(): JSX.Element {
 
   return (
     <Layout loading={loading} header={<EditHeader />}>
-      <>
-        <Input
-          placeholder="100자 이내로 질문을 작성해주세요"
-          SubElement={<span>+</span>}
-          value={input}
-          onChange={onChange}
-          onSubmit={onSubmit}
-        />
-        <ReactSortable tag="ul" handle=".btn-move" list={questions} setList={setQuestions}>
-          {questions.map((question) => (
-            <QuestionListItem
-              key={question.id}
-              question={question}
-              deleteQuestion={deleteQuestion}
-              editQuestion={editQuestion}
-            />
-          ))}
-        </ReactSortable>
-      </>
+      <Input
+        placeholder="100자 이내로 질문을 작성해주세요"
+        SubElement={<span>+</span>}
+        value={input}
+        onChange={onChange}
+        onSubmit={onSubmit}
+      />
+      <ReactSortable tag="ul" handle=".btn-move" list={questions} setList={setQuestions}>
+        {questions.map((question) => (
+          <QuestionListItem
+            key={question.id}
+            question={question}
+            deleteQuestion={deleteQuestion}
+            editQuestion={editQuestion}
+          />
+        ))}
+      </ReactSortable>
     </Layout>
   );
 }
