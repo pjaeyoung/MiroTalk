@@ -1,8 +1,8 @@
 import { FormEvent, useState, useEffect } from 'react';
+import { ReactSortable } from 'react-sortablejs';
 import Layout from '../components/Layout';
 import EditHeader from '../components/EditHeader';
 import Input from '../components/Input';
-import List from '../components/List';
 import QuestionListItem from '../components/QuestionListItem';
 
 interface Question {
@@ -84,7 +84,7 @@ export default function App(): JSX.Element {
           onChange={onChange}
           onSubmit={onSubmit}
         />
-        <List>
+        <ReactSortable tag="ul" handle=".btn-move" list={questions} setList={setQuestions}>
           {questions.map((question) => (
             <QuestionListItem
               key={question.id}
@@ -93,7 +93,7 @@ export default function App(): JSX.Element {
               editQuestion={editQuestion}
             />
           ))}
-        </List>
+        </ReactSortable>
       </>
     </Layout>
   );
