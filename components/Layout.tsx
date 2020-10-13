@@ -1,10 +1,10 @@
-import HeaderWrapper from './HeaderWrapper';
 import Loading from './Loading';
+import styles from '../styles/header.module.scss';
 
 interface LayoutProps {
   loading: boolean;
   header: JSX.Element;
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 export default function Layout({ loading, header, children }: LayoutProps): JSX.Element {
@@ -14,8 +14,8 @@ export default function Layout({ loading, header, children }: LayoutProps): JSX.
         <Loading />
       ) : (
         <>
-          <HeaderWrapper>{header}</HeaderWrapper>
-          {children}
+          <header className={styles.headerWrapper}>{header}</header>
+          <main>{children}</main>
         </>
       )}
     </>
