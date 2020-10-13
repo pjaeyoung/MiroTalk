@@ -1,4 +1,6 @@
 import { DetailedHTMLProps, FormEvent, InputHTMLAttributes, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 type SubmitEvent = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -61,14 +63,15 @@ export default function QuestionListItem({
       <button className="btn-move">::</button>
       <input value={value} onChange={onChange} onKeyDown={onSubmit} />
       <div>
-        <button onClick={() => toggleEditMode(true)}>수정</button>
-        <div>|</div>
+        <button onClick={() => toggleEditMode(true)}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
         <button
           onClick={() => {
             deleteQuestion(id);
           }}
         >
-          삭제
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
     </li>
