@@ -1,0 +1,49 @@
+@import 'utils.module.scss';
+
+.questionListItem {
+  display: flex;
+  width: 70vw;
+  padding-left: 1rem;
+  background-color: white;
+  margin-bottom: 1rem;
+
+  input {
+    margin: 0 1rem;
+    cursor: default;
+  }
+
+  &:hover .contextSensitiveNav {
+    opacity: 1;
+  }
+}
+
+.btnMove {
+  font-size: 1.8rem;
+  color: $grey;
+  background-color: white;
+}
+
+.contextSensitiveNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $blue;
+  opacity: 0;
+}
+
+.btnEdit,
+.btnDelete {
+  padding: 1rem 1.5rem;
+  font-size: 1.8rem;
+  color: white;
+  background: none;
+}
+
+.btnEdit::after {
+  content: '';
+  left: 4.5rem;
+  width: 0.2rem;
+  height: 1.8rem;
+  position: absolute;
+  background-color: white;
+}
