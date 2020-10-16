@@ -1,5 +1,8 @@
+@import './utils.module.scss';
+
 .indexPageMain {
   width: 100vw;
+  min-width: $minWidth;
   padding: 0 2rem;
   padding-bottom: 2rem;
   display: flex;
