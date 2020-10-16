@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: $minWidth;
   background-color: white;
   padding: 1rem 2rem;
   @include boxShadow(0px, 4px, 4px, 0px, rgba(0, 0, 0, 0.1));

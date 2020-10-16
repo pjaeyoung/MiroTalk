@@ -1,39 +1,51 @@
 @import 'utils.module.scss';
 
 .questionListItem {
+  position: relative;
   display: flex;
+  align-items: center;
   width: 70vw;
+  height: 5vh;
+  min-width: $minWidth;
   padding-left: 1rem;
   background-color: white;
   margin-bottom: 1rem;
 
   input {
-    margin: 0 1rem;
+    position: absolute;
+    left: 3rem;
+    width: 90%;
     cursor: default;
   }
 
+  input:focus ~ .contextSensitiveNav {
+    display: none;
+  }
+
   &:hover .contextSensitiveNav {
-    opacity: 1;
+    display: flex;
   }
 }
 
 .btnMove {
+  position: absolute;
+  left: 0.5rem;
   font-size: 1.8rem;
   color: $grey;
   background-color: white;
 }
 
 .contextSensitiveNav {
-  position: relative;
-  display: flex;
+  position: absolute;
+  right: 0;
+  display: none;
   align-items: center;
   background-color: $blue;
-  opacity: 0;
 }
 
 .btnEdit,
 .btnDelete {
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1.8rem;
   color: white;
   background: none;
