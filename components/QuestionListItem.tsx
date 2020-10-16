@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FormEvent, InputHTMLAttributes, useState } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/question.module.scss';
@@ -16,13 +16,6 @@ interface QuestionListItemProps {
   editQuestion: (id: number, text: string) => void;
 }
 
-interface InputEventTarget extends EventTarget {
-  value: string;
-}
-interface InputEvent extends FormEvent {
-  target: InputEventTarget;
-}
-
 export default function QuestionListItem({
   question: { id, text },
   deleteQuestion,
@@ -30,17 +23,26 @@ export default function QuestionListItem({
 }: QuestionListItemProps): JSX.Element {
   const [value, setValue] = useState<string>(text);
   const [editable, setEditable] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>();
+  const navRef = useRef<HTMLInputElement>();
+
+  useEffect(() => {
+    // editable 상태면 input창에 커서 출력
+    if (editable) {
+      inputRef.current.focus();
+    }
+  }, [editable]);
 
   // 질문 수정 입력창 : state 처리
-  const onChange = (e: InputEvent) => {
+  const onChange = () => {
     if (!editable) {
       return;
     }
-    const { length } = e.target.value;
+    const { length } = inputRef.current.value;
     if (length > 100) {
       return;
     }
-    setValue(e.target.value);
+    setValue(inputRef.current.value);
   };
 
   // 질문 수정 모드 변경
@@ -53,10 +55,22 @@ export default function QuestionListItem({
     if (e.key !== 'Enter') {
       return;
     }
-    setValue(value);
     editQuestion(id, value);
     toggleEditMode(false);
-    // css 처리 : 수정/삭제 버튼 감추기
+    inputRef.current.blur();
+  };
+
+  // 포커스 해제시 자동 저장
+  const onBlur = () => {
+    editQuestion(id, value);
+    toggleEditMode(false);
+  };
+
+  // editable이 아닌 상태에서 input창 눌렀을 때 focus 이벤트 방지
+  const onFocus = () => {
+    if (!editable) {
+      inputRef.current.blur();
+    }
   };
 
   return (
@@ -64,8 +78,15 @@ export default function QuestionListItem({
       <button className={`btnMove ${styles.btnMove}`}>
         <FontAwesomeIcon icon={faGripVertical} />
       </button>
-      <input value={value} onChange={onChange} onKeyDown={onSubmit} />
-      <div className={styles.contextSensitiveNav}>
+      <input
+        ref={inputRef}
+        value={value}
+        onFocus={onFocus}
+        onChange={onChange}
+        onKeyDown={onSubmit}
+        onBlur={onBlur}
+      />
+      <div ref={navRef} className={styles.contextSensitiveNav}>
         <button className={styles.btnEdit} onClick={() => toggleEditMode(true)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
