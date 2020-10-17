@@ -25,6 +25,15 @@
   &:hover .contextSensitiveNav {
     display: flex;
   }
+
+  &.selected {
+    border: 2px solid $blue;
+    background-color: $lightGrey;
+
+    > :not(.contextSensitiveNav) {
+      background-color: $lightGrey;
+    }
+  }
 }
 
 .btnMove {
