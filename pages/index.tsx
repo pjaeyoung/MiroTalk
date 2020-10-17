@@ -14,13 +14,6 @@ interface Question {
   isSelected: boolean;
 }
 
-interface InputEventTarget extends EventTarget {
-  value: string;
-}
-interface InputEvent extends FormEvent {
-  target: InputEventTarget;
-}
-
 const QUESTIONS = 'Questions'; // localStorage key
 
 export default function App(): JSX.Element {
@@ -41,12 +34,12 @@ export default function App(): JSX.Element {
   }, []);
 
   // 질문 작성 입력창 : state 처리
-  const onChange = (e: InputEvent) => {
-    const { length } = e.target.value;
-    if (length > 100) {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value } = e.target;
+    if (value.length > 100) {
       return;
     }
-    setInput(e.target.value);
+    setInput(value);
   };
 
   // 질문 작성 입력창 : 질문 생성
@@ -56,7 +49,7 @@ export default function App(): JSX.Element {
       return;
     }
 
-    setQuestions((prev) => {
+    setQuestions((prev: Question[]) => {
       let lastId = 0;
       if (prev.length !== 0) {
         lastId = prev[prev.length - 1].id + 1;
@@ -70,10 +63,10 @@ export default function App(): JSX.Element {
     setQuestions((prev) => prev.filter((question) => question.id !== id));
   };
 
-  const editQuestion = (id: number, text: string): void => {
+  const editQuestion = (id: number, text: string, isSelected = false): void => {
     setQuestions((prev) => {
       const index = prev.findIndex((question) => question.id === id);
-      return [...prev.slice(0, index), { id, text, isSelected: false }, ...prev.slice(index + 1)];
+      return [...prev.slice(0, index), { id, text, isSelected }, ...prev.slice(index + 1)];
     });
   };
 
