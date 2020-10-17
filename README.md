@@ -1,30 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**MiroTalk** 은 Mirror 와 Talk을 합성한 단어입니다. MiroTalk 은 거울에 마주앉아 스스로 질문하고 답변하는 연습에서 모티브를 얻었습니다. 더이상 거울을 쓰지 마세요! 면접대비, 개념암기, 영어 스피킹 등 혼자서 준비하고 싶을 때 **MiroTalk**을 사용해보세요! 
 
-## Getting Started
+# :star2: MiroTalk이 제공하는 서비스
 
-First, run the development server:
+### :pencil2: 원하는 만큼 질문 리스트를 작성할 수 있어요
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    연습하고 싶은 문항들을 작성해보세요! 수정/삭제도 가능합니다. 문항 순서도 쉽게 바꿀 수 있습니다. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### :balance_scale: 녹화 모드와 챗 모드 둘 중 하나를 골라 연습할 수 있어요
 
-## Learn More
+    녹화모드로 소리내어 답변해보세요. 크게 떠들 수 없는 공간이지만 답변을 암기하고 싶다면 챗 모드를 사용하세요. 
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### :microphone: 녹화 모드에서 질문을 대신 읽어드려요
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    등록하신 질문을 TTS를 사용해서 기계가 텍스트를 읽어줍니다. 혼자지만 상대방이 있는 것처럼 느껴질 수 있도록 해줍니다.
 
-## Deploy on Vercel
+### :watch: 시간제한을 둘 수 있어요
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    시간 제한을 ON/OFF 하는 기능을 제공합니다. ON했을 때 최대 10분까지 시간제한을 둘 수 있습니다. 시간 제한을 두면 현장감이 더 살아나겠죠?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### :open_file_folder: 결과를 저장할 수 있어요 
+
+    결과물을 구글 드라이브나 로컬에 저장하세요. 두고두고 참고하거나 새로운 결과물과 비교해서 다듬어나갈 수 있게 해줍니다.
