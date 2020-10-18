@@ -1,17 +1,17 @@
 import { FormEvent } from 'react';
 
-type Styles = string;
-
 interface InputProps {
+  name: string;
   value: string;
   placeholder: string;
   onSubmit: (e: FormEvent) => void;
   onChange: (e: FormEvent) => void;
   SubElement: JSX.Element;
-  styles: Styles;
+  styles: string;
 }
 
 export default function Input({
+  name,
   value,
   placeholder,
   onSubmit,
@@ -22,7 +22,7 @@ export default function Input({
   return (
     <form className={styles} onSubmit={onSubmit}>
       {SubElement}
-      <input value={value} onChange={onChange} placeholder={placeholder} />
+      <input name={name} value={value} onChange={onChange} placeholder={placeholder} />
     </form>
   );
 }

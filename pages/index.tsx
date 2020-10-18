@@ -76,6 +76,7 @@ export default function App(): JSX.Element {
         <Input
           placeholder="100자 이내로 질문을 작성해주세요"
           SubElement={<FontAwesomeIcon icon={faPlus} />}
+          name="createQuestion"
           value={input}
           onChange={onChange}
           onSubmit={onSubmit}
