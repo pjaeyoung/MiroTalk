@@ -12,6 +12,8 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { Header, IconButton, Logo, ModeButton } from '../../components';
+
 interface Question {
   id: number;
   text: string;
@@ -25,59 +27,7 @@ const Main = styled.main`
   background-color: ${(props) => props.theme.color.background};
 `;
 
-const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-height: 10vh;
-  min-height: 5rem;
-  padding: 0 2rem;
-  background-color: ${(props) => props.theme.color.header};
-`;
-
-const NavButton = styled.button`
-  font-size: 1.5rem;
-  border: none;
-  background: none;
-
-  & > svg {
-    color: ${(props) => props.theme.color.blue};
-  }
-`;
-
 const ModeBtnContainer = styled.div``;
-
-const ModeBtn = styled.button`
-  color: white;
-  background-color: ${(props) => props.theme.color.blue};
-  border: none;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-
-  &:last-of-type {
-    margin-left: 0.5rem;
-  }
-
-  & > span {
-    margin-left: 0.5rem;
-  }
-`;
-
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  min-width: 1rem;
-
-  & > img {
-    width: 1.5rem;
-  }
-
-  & > span {
-    font-size: 1.5rem;
-    color: ${(props) => props.theme.color.blue};
-    font-family: 'Sansita Swashed', cursive;
-  }
-`;
 
 const QUESTIONS = 'Questions'; // localStorage key
 
@@ -138,22 +88,11 @@ export default function QuestionCreate(): JSX.Element {
   return (
     <>
       <Header>
-        <NavButton>
-          <FontAwesomeIcon icon={faBars} />
-        </NavButton>
-        <Logo>
-          <img src="logo.png" alt="MiroTalk Logo" />
-          <span>MiroTalk</span>
-        </Logo>
+        <IconButton icon={faBars} onClick={() => {}} />
+        <Logo />
         <ModeBtnContainer>
-          <ModeBtn>
-            <FontAwesomeIcon icon={faVideo} />
-            <span>녹화</span>
-          </ModeBtn>
-          <ModeBtn>
-            <FontAwesomeIcon icon={faComment} />
-            <span>채팅</span>
-          </ModeBtn>
+          <ModeButton icon={faVideo} text="화상" onClick={() => {}} />
+          <ModeButton icon={faComment} text="채팅" onClick={() => {}} />
         </ModeBtnContainer>
       </Header>
       <Main>
