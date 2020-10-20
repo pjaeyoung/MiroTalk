@@ -12,8 +12,30 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 
-import * as S from './style';
-import { Header, IconButton, Logo, ModeButton } from '../../components';
+import * as S from '../components/QuestionCreate';
+import { Header, IconButton, Logo, ModeButton } from '../components';
+
+const QuestionForm = styled.form`
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  padding: 1rem 1.5rem;
+
+  & > svg {
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.color.blue};
+  }
+
+  & > input {
+    width: 100%;
+    height: 100%;
+    padding-left: 1rem;
+    background: none;
+    border: none;
+    color: ${(props) => props.theme.color.grey};
+    border-bottom: 1px solid ${(props) => props.theme.color.grey};
+  }
+`;
 
 interface Question {
   id: number;
@@ -88,44 +110,44 @@ export default function QuestionCreate(): JSX.Element {
         </S.ModeBtnContainer>
       </Header>
       <S.Main>
-        <section>
-          <form onSubmit={onSubmit}>
-            <FontAwesomeIcon icon={faPlus} />
-            <input name="createQuestion" placeholder="100자 이내로 질문을 작성해주세요" />
-          </form>
-        </section>
-        <section>
-          <ul>
-            <li>
+        <QuestionForm onSubmit={onSubmit}>
+          <FontAwesomeIcon icon={faPlus} />
+          <input
+            name="createQuestion"
+            autoComplete="off"
+            placeholder="100자 이내로 질문을 작성해주세요"
+          />
+        </QuestionForm>
+        <ul>
+          <li>
+            <button>
+              <FontAwesomeIcon icon={faGripVertical} />
+            </button>
+            <input type="text" value="질문 예제 1" onChange={() => {}} />
+            <div>
               <button>
-                <FontAwesomeIcon icon={faGripVertical} />
+                <FontAwesomeIcon icon={faEdit} />
               </button>
-              <input type="text" value="질문 예제 1" onChange={() => {}} />
-              <div>
-                <button>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            </li>
-            <li>
               <button>
-                <FontAwesomeIcon icon={faGripVertical} />
+                <FontAwesomeIcon icon={faTrash} />
               </button>
-              <input type="text" value="질문 예제 1" onChange={() => {}} />
-              <div>
-                <button>
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
-            </li>
-          </ul>
-        </section>
+            </div>
+          </li>
+          <li>
+            <button>
+              <FontAwesomeIcon icon={faGripVertical} />
+            </button>
+            <input type="text" value="질문 예제 1" onChange={() => {}} />
+            <div>
+              <button>
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
+          </li>
+        </ul>
       </S.Main>
     </>
   );
