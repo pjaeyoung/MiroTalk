@@ -7,7 +7,6 @@ interface InputProps {
   onSubmit: (e: FormEvent) => void;
   onChange: (e: FormEvent) => void;
   SubElement: JSX.Element;
-  styles: string;
 }
 
 export default function Input({
@@ -17,10 +16,9 @@ export default function Input({
   onSubmit,
   onChange,
   SubElement,
-  styles,
 }: InputProps): JSX.Element {
   return (
-    <form className={styles} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {SubElement}
       <input name={name} value={value} onChange={onChange} placeholder={placeholder} />
     </form>

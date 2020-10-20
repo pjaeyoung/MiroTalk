@@ -2,11 +2,8 @@ import { FormEvent, useState, useEffect } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import Layout from '../components/Layout';
-import EditHeader from '../components/EditHeader';
 import Input from '../components/Input';
 import QuestionListItem from '../components/QuestionListItem';
-import styles from '../styles/input.module.scss';
 
 interface Question {
   id: number;
@@ -71,28 +68,25 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <Layout loading={loading} header={<EditHeader />}>
-      <main className="indexPageMain">
-        <Input
-          placeholder="100자 이내로 질문을 작성해주세요"
-          SubElement={<FontAwesomeIcon icon={faPlus} />}
-          name="createQuestion"
-          value={input}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          styles={styles.questionForm}
-        />
-        <ReactSortable tag="ul" handle=".btnMove" list={questions} setList={setQuestions}>
-          {questions.map((question) => (
-            <QuestionListItem
-              key={question.id}
-              question={question}
-              deleteQuestion={deleteQuestion}
-              editQuestion={editQuestion}
-            />
-          ))}
-        </ReactSortable>
-      </main>
-    </Layout>
+    <main>
+      <Input
+        placeholder="100자 이내로 질문을 작성해주세요"
+        SubElement={<FontAwesomeIcon icon={faPlus} />}
+        name="createQuestion"
+        value={input}
+        onChange={onChange}
+        onSubmit={onSubmit}
+      />
+      <ReactSortable tag="ul" handle=".btnMove" list={questions} setList={setQuestions}>
+        {questions.map((question) => (
+          <QuestionListItem
+            key={question.id}
+            question={question}
+            deleteQuestion={deleteQuestion}
+            editQuestion={editQuestion}
+          />
+        ))}
+      </ReactSortable>
+    </main>
   );
 }

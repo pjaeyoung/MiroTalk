@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/question.module.scss';
 
 type SubmitEvent = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -37,11 +36,11 @@ export default function QuestionListItem({
   // 질문 선택여부에 따라 해당 질문 수정
   // useEffect로 따로 빼두지 않고 toggleSelected에서 구현하면 editQuestion 두 번 실행으로 변경사항이 제대로 반영되지 않음
   useEffect(() => {
-    if (selected) {
-      liRef.current.classList.add(styles.selected);
-    } else {
-      liRef.current.classList.remove(styles.selected);
-    }
+    // if (selected) {
+    //   liRef.current.classList.add(styles.selected);
+    // } else {
+    //   liRef.current.classList.remove(styles.selected);
+    // }
     editQuestion(id, value, selected);
   }, [selected]);
 
@@ -94,8 +93,8 @@ export default function QuestionListItem({
   };
 
   return (
-    <li ref={liRef} className={styles.questionListItem} onClick={toggleSelected}>
-      <button className={`btnMove ${styles.btnMove}`}>
+    <li ref={liRef} onClick={toggleSelected}>
+      <button>
         <FontAwesomeIcon icon={faGripVertical} />
       </button>
       <input
@@ -106,12 +105,11 @@ export default function QuestionListItem({
         onKeyDown={onSubmit}
         onBlur={onBlur}
       />
-      <div className={styles.contextSensitiveNav}>
-        <button className={styles.btnEdit} onClick={() => toggleEditMode(true)}>
+      <div>
+        <button onClick={() => toggleEditMode(true)}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
         <button
-          className={styles.btnDelete}
           onClick={() => {
             deleteQuestion(id);
           }}
