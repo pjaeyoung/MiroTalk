@@ -1,4 +1,5 @@
 const color = {
+  header: 'white',
   background: '#f4f7f9',
   blue: '#668cec',
   grey: '#909ab8',

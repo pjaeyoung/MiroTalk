@@ -13,7 +13,11 @@ const GlobalStyle = createGlobalStyle`
     }
     *:focus {
         outline: 0;
-    }   
+    } 
+
+    button{
+        border-radius:0.25rem;
+    }
 `;
 
 export default GlobalStyle;
