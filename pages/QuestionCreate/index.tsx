@@ -12,6 +12,7 @@ import {
   faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 
+import * as S from './style';
 import { Header, IconButton, Logo, ModeButton } from '../../components';
 
 interface Question {
@@ -19,15 +20,6 @@ interface Question {
   text: string;
   isSelected: boolean;
 }
-
-const Main = styled.main`
-  padding: 10rem 15rem;
-  min-height: 100vh;
-  min-width: 680px;
-  background-color: ${(props) => props.theme.color.background};
-`;
-
-const ModeBtnContainer = styled.div``;
 
 const QUESTIONS = 'Questions'; // localStorage key
 
@@ -90,12 +82,12 @@ export default function QuestionCreate(): JSX.Element {
       <Header>
         <IconButton icon={faBars} onClick={() => {}} />
         <Logo />
-        <ModeBtnContainer>
+        <S.ModeBtnContainer>
           <ModeButton icon={faVideo} text="화상" onClick={() => {}} />
           <ModeButton icon={faComment} text="채팅" onClick={() => {}} />
-        </ModeBtnContainer>
+        </S.ModeBtnContainer>
       </Header>
-      <Main>
+      <S.Main>
         <section>
           <form onSubmit={onSubmit}>
             <FontAwesomeIcon icon={faPlus} />
@@ -134,7 +126,7 @@ export default function QuestionCreate(): JSX.Element {
             </li>
           </ul>
         </section>
-      </Main>
+      </S.Main>
     </>
   );
 }
