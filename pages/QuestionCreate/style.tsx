@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  padding: 10rem 15rem;
+  padding: 5rem 10%;
   min-height: 100vh;
-  min-width: 680px;
+  max-width: 100vw;
   background-color: ${(props) => props.theme.color.background};
 `;
 
