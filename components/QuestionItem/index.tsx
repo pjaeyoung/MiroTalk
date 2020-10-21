@@ -1,30 +1,27 @@
-import { DetailedHTMLProps, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
-
-type SubmitEvent = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+import { useEffect, useRef, useState } from 'react';
+import * as S from './styles';
 
 interface Question {
   id: number;
   text: string;
   isSelected: boolean;
 }
-interface QuestionListItemProps {
+interface QuestionItemProps {
   question: Question;
   deleteQuestion: (id: number) => void;
   editQuestion: (id: number, text: string, isSelected?: boolean) => void;
 }
 
-export default function QuestionListItem({
-  question: { id, text, isSelected },
+export default function QuestionItem({
+  question,
   deleteQuestion,
   editQuestion,
-}: QuestionListItemProps): JSX.Element {
+}: QuestionItemProps): JSX.Element {
+  const { id, text, isSelected } = question;
   const [selected, setSelected] = useState<boolean>(isSelected);
   const [value, setValue] = useState<string>(text);
   const [editable, setEditable] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>();
-  const liRef = useRef<HTMLLIElement>();
 
   useEffect(() => {
     // editable 상태면 input창에 커서 출력
@@ -36,11 +33,6 @@ export default function QuestionListItem({
   // 질문 선택여부에 따라 해당 질문 수정
   // useEffect로 따로 빼두지 않고 toggleSelected에서 구현하면 editQuestion 두 번 실행으로 변경사항이 제대로 반영되지 않음
   useEffect(() => {
-    // if (selected) {
-    //   liRef.current.classList.add(styles.selected);
-    // } else {
-    //   liRef.current.classList.remove(styles.selected);
-    // }
     editQuestion(id, value, selected);
   }, [selected]);
 
@@ -70,7 +62,7 @@ export default function QuestionListItem({
   };
 
   // 질문 수정 입력창 : 질문 수정
-  const onSubmit = (e: SubmitEvent): void => {
+  const onSubmit = (e: React.KeyboardEvent): void => {
     if (e.key !== 'Enter') {
       return;
     }
@@ -91,32 +83,22 @@ export default function QuestionListItem({
       inputRef.current.blur();
     }
   };
-
   return (
-    <li ref={liRef} onClick={toggleSelected}>
-      <button>
-        <FontAwesomeIcon icon={faGripVertical} />
-      </button>
-      <input
+    <S.QuestionItem editable={editable} selected={selected} onClick={toggleSelected}>
+      <S.MoveButton icon="fas fa-grip-vertical" onClick={() => {}} />
+      <S.QuestionItemText
         ref={inputRef}
+        type="text"
         value={value}
         onFocus={onFocus}
         onChange={onChange}
         onKeyDown={onSubmit}
         onBlur={onBlur}
       />
-      <div>
-        <button onClick={() => toggleEditMode(true)}>
-          <FontAwesomeIcon icon={faEdit} />
-        </button>
-        <button
-          onClick={() => {
-            deleteQuestion(id);
-          }}
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
-      </div>
-    </li>
+      <S.HoverMenu>
+        <S.EditButton icon="fas fa-edit" onClick={() => toggleEditMode(true)} />
+        <S.DeleteButton icon="fas fa-trash" onClick={() => deleteQuestion(id)} />
+      </S.HoverMenu>
+    </S.QuestionItem>
   );
 }

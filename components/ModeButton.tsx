@@ -1,5 +1,3 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -20,14 +18,14 @@ const Button = styled.button`
 
 interface ModeButtonProps {
   text: string;
-  icon: IconProp;
+  icon: string;
   onClick: (e: React.MouseEvent) => void;
 }
 
 export default function ModeButton(props: ModeButtonProps): JSX.Element {
   return (
     <Button onClick={props.onClick}>
-      <FontAwesomeIcon icon={props.icon} />
+      <i className={props.icon} />
       <span>{props.text}</span>
     </Button>
   );

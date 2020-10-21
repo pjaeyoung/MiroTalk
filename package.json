@@ -11,9 +11,6 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
