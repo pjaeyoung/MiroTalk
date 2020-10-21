@@ -15,8 +15,8 @@ export default styled.form`
     width: 100%;
     height: 100%;
     padding-left: 1rem;
+    font-size: 1rem;
     background: none;
-    border: none;
     border-bottom: 1px solid ${(props) => props.theme.color.grey};
   }
 `;
