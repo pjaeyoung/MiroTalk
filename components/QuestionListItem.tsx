@@ -1,6 +1,4 @@
 import { DetailedHTMLProps, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
 
 type SubmitEvent = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
