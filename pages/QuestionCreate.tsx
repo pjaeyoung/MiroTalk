@@ -3,7 +3,7 @@ import { ReactSortable } from 'react-sortablejs';
 import styled from 'styled-components';
 
 import * as S from '../components/QuestionCreate';
-import { Header, IconButton, Logo, ModeButton, QuestionForm } from '../components';
+import { Header, IconButton, Logo, ModeButton, QuestionForm, QuestionItem } from '../components';
 
 interface Question {
   id: number;
@@ -13,8 +13,9 @@ interface Question {
 
 const QUESTIONS = 'Questions'; // localStorage key
 
+const QuestionList = styled(ReactSortable)``;
+
 export default function QuestionCreate(): JSX.Element {
-  const [loading, setLoading] = useState<boolean>(true);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
 
@@ -27,7 +28,6 @@ export default function QuestionCreate(): JSX.Element {
   useEffect(() => {
     const questionsInLocalStorage = JSON.parse(localStorage.getItem(QUESTIONS)) || [];
     setQuestions(questionsInLocalStorage);
-    setLoading(false);
   }, []);
 
   // 질문 작성 입력창 : state 처리
@@ -38,7 +38,6 @@ export default function QuestionCreate(): JSX.Element {
     }
     setInput(value);
   };
-
   // 질문 작성 입력창 : 질문 생성
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
@@ -78,35 +77,17 @@ export default function QuestionCreate(): JSX.Element {
         </S.ModeBtnContainer>
       </Header>
       <S.Main>
-        <QuestionForm onSubmit={onSubmit} onChange={onChange} />
-        <ul>
-          <li>
-            <IconButton icon="fas fa-grip-vertical" onClick={() => {}} />
-            <input type="text" value="질문 예제 1" onChange={() => {}} />
-            <div>
-              <button>
-                <i className="fas fa-edit" />
-              </button>
-              <button>
-                <i className="fas fa-trash" />
-              </button>
-            </div>
-          </li>
-          <li>
-            <button>
-              <i className="fas fa-grip-vertical" />
-            </button>
-            <input type="text" value="질문 예제 1" onChange={() => {}} />
-            <div>
-              <button>
-                <i className="fas fa-edit" />
-              </button>
-              <button>
-                <i className="fas fa-trash" />
-              </button>
-            </div>
-          </li>
-        </ul>
+        <QuestionForm value={input} onSubmit={onSubmit} onChange={onChange} />
+        <QuestionList tag="ul" list={questions} setList={setQuestions}>
+          {questions.map((question) => (
+            <QuestionItem
+              key={question.id}
+              question={question}
+              editQuestion={editQuestion}
+              deleteQuestion={deleteQuestion}
+            />
+          ))}
+        </QuestionList>
       </S.Main>
     </>
   );

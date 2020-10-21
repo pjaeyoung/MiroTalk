@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     button{
         border-radius:0.25rem;
     }
+
+    input{
+        border:none;
+    }
 `;
 
 export default GlobalStyle;
