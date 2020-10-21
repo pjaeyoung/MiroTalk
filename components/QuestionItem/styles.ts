@@ -7,7 +7,12 @@ export const EditButton = styled(IconButton)``;
 
 export const DeleteButton = styled(IconButton)``;
 
-export const QuestionItem = styled.li`
+interface QuestionItemProps {
+  selected: boolean;
+  editable: boolean;
+}
+
+export const QuestionItem = styled.li<QuestionItemProps>`
   display: flex;
   align-items: center;
   padding-left: 0.5rem;
