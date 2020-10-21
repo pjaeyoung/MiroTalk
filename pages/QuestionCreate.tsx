@@ -1,9 +1,14 @@
 import { FormEvent, useState, useEffect, ChangeEvent } from 'react';
-import { ReactSortable } from 'react-sortablejs';
-import styled from 'styled-components';
-
-import * as S from '../components/QuestionCreate';
-import { Header, IconButton, Logo, ModeButton, QuestionForm, QuestionItem } from '../components';
+import {
+  Header,
+  IconButton,
+  Logo,
+  ModeButtons,
+  QuestionForm,
+  QuestionItem,
+  QuestionGroup,
+  QuestionCreateMain,
+} from '../components';
 
 interface Question {
   id: number;
@@ -12,8 +17,6 @@ interface Question {
 }
 
 const QUESTIONS = 'Questions'; // localStorage key
-
-const QuestionList = styled(ReactSortable)``;
 
 export default function QuestionCreate(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -71,14 +74,11 @@ export default function QuestionCreate(): JSX.Element {
       <Header>
         <IconButton icon="fas fa-bars" onClick={() => {}} />
         <Logo />
-        <S.ModeBtnContainer>
-          <ModeButton icon="fas fa-video" text="화상" onClick={() => {}} />
-          <ModeButton icon="fas fa-comment" text="채팅" onClick={() => {}} />
-        </S.ModeBtnContainer>
+        <ModeButtons />
       </Header>
-      <S.Main>
+      <QuestionCreateMain>
         <QuestionForm value={input} onSubmit={onSubmit} onChange={onChange} />
-        <QuestionList tag="ul" list={questions} setList={setQuestions}>
+        <QuestionGroup tag="ul" list={questions} setList={setQuestions}>
           {questions.map((question) => (
             <QuestionItem
               key={question.id}
@@ -87,8 +87,8 @@ export default function QuestionCreate(): JSX.Element {
               deleteQuestion={deleteQuestion}
             />
           ))}
-        </QuestionList>
-      </S.Main>
+        </QuestionGroup>
+      </QuestionCreateMain>
     </>
   );
 }
