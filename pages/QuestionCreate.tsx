@@ -1,16 +1,6 @@
 import { FormEvent, useState, useEffect } from 'react';
 import { ReactSortable } from 'react-sortablejs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-import {
-  faBars,
-  faComment,
-  faEdit,
-  faGripVertical,
-  faPlus,
-  faTrash,
-  faVideo,
-} from '@fortawesome/free-solid-svg-icons';
 
 import * as S from '../components/QuestionCreate';
 import { Header, IconButton, Logo, ModeButton } from '../components';
@@ -102,16 +92,16 @@ export default function QuestionCreate(): JSX.Element {
   return (
     <>
       <Header>
-        <IconButton icon={faBars} onClick={() => {}} />
+        <IconButton icon="fas fa-bars" onClick={() => {}} />
         <Logo />
         <S.ModeBtnContainer>
-          <ModeButton icon={faVideo} text="화상" onClick={() => {}} />
-          <ModeButton icon={faComment} text="채팅" onClick={() => {}} />
+          <ModeButton icon="fas fa-video" text="화상" onClick={() => {}} />
+          <ModeButton icon="fas fa-comment" text="채팅" onClick={() => {}} />
         </S.ModeBtnContainer>
       </Header>
       <S.Main>
         <QuestionForm onSubmit={onSubmit}>
-          <FontAwesomeIcon icon={faPlus} />
+          <i className="fas fa-plus" />
           <input
             name="createQuestion"
             autoComplete="off"
@@ -121,29 +111,29 @@ export default function QuestionCreate(): JSX.Element {
         <ul>
           <li>
             <button>
-              <FontAwesomeIcon icon={faGripVertical} />
+              <i className="fas fa-grip-vertical" />
             </button>
             <input type="text" value="질문 예제 1" onChange={() => {}} />
             <div>
               <button>
-                <FontAwesomeIcon icon={faEdit} />
+                <i className="fas fa-edit" />
               </button>
               <button>
-                <FontAwesomeIcon icon={faTrash} />
+                <i className="fas fa-trash" />
               </button>
             </div>
           </li>
           <li>
             <button>
-              <FontAwesomeIcon icon={faGripVertical} />
+              <i className="fas fa-grip-vertical" />
             </button>
             <input type="text" value="질문 예제 1" onChange={() => {}} />
             <div>
               <button>
-                <FontAwesomeIcon icon={faEdit} />
+                <i className="fas fa-edit" />
               </button>
               <button>
-                <FontAwesomeIcon icon={faTrash} />
+                <i className="fas fa-trash" />
               </button>
             </div>
           </li>

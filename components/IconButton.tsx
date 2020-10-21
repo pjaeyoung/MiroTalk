@@ -1,5 +1,3 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -7,20 +5,20 @@ const Button = styled.button`
   border: none;
   background: none;
 
-  & > svg {
+  & > i {
     color: ${(props) => props.theme.color.blue};
   }
 `;
 
 interface IconButtonProps {
-  icon: IconProp;
+  icon: string;
   onClick: (e: React.MouseEvent) => void;
 }
 
 export default function IconButton(props: IconButtonProps): JSX.Element {
   return (
     <Button onClick={props.onClick}>
-      <FontAwesomeIcon icon={props.icon} />
+      <i className={props.icon} />
     </Button>
   );
 }
