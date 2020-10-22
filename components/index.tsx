@@ -1,19 +1,13 @@
-import Header from './Header';
-import IconButton from './IconButton';
-import ModeButtons from './ModeButtons';
-import Logo from './Logo';
-import QuestionForm from './QuestionForm';
-import QuestionItem from './QuestionItem';
-import QuestionGroup from './QuestionGroup';
-import QuestionCreateMain from './QuestionCreateMain';
-
-export {
-  Header,
-  IconButton,
-  ModeButtons,
-  Logo,
-  QuestionForm,
-  QuestionItem,
-  QuestionGroup,
-  QuestionCreateMain,
-};
+export { default as Header } from './Header';
+export { default as IconButton } from './IconButton';
+export { default as ModeButtons } from './ModeButtons';
+export { default as Logo } from './Logo';
+export { default as QuestionForm } from './QuestionForm';
+export { default as QuestionItem } from './QuestionItem';
+export { default as QuestionGroup } from './QuestionGroup';
+export { default as QuestionCreateMain } from './QuestionCreateMain';
+export { default as Modal } from './Modal';
+export { default as CloseModalButton } from './CloseModalButton';
+export { default as ModalTitle } from './ModalTitle';
+export { default as TimerSet } from './TimerSet';
+export { default as StartButton } from './StartButton';
