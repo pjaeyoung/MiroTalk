@@ -1,10 +1,10 @@
 import { MutableRefObject, useRef } from 'react';
 
-export default function useWinVisibility(): [
-  MutableRefObject<HTMLDivElement>,
+export default function useWinVisibility<T extends HTMLElement>(): [
+  MutableRefObject<T>,
   (visible: boolean) => void,
 ] {
-  const winRef = useRef<HTMLDivElement>();
+  const winRef = useRef<T>();
 
   const setWinVisible = (visible: boolean) => {
     if (visible) {
