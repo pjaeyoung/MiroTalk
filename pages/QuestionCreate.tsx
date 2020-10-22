@@ -1,14 +1,30 @@
 import { FormEvent, useState, useEffect, ChangeEvent } from 'react';
+import styled, { css } from 'styled-components';
+import { useWinVisibility } from '../hooks';
 import {
   Header,
   IconButton,
   Logo,
+  StartButton,
   ModeButtons,
   QuestionForm,
   QuestionItem,
   QuestionGroup,
   QuestionCreateMain,
+  Modal,
+  ModalTitle,
+  CloseModalButton,
+  TimerSet,
 } from '../components';
+
+const GridTemplate = css`
+  grid-template-rows: 1fr 1fr 3fr 1fr;
+  grid-template-areas:
+    'closeBtn'
+    'title'
+    'timer'
+    'startBtn';
+`;
 
 interface Question {
   id: number;
@@ -21,6 +37,7 @@ const QUESTIONS = 'Questions'; // localStorage key
 export default function QuestionCreate(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
+  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>();
 
   // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
   useEffect(() => {
@@ -89,6 +106,17 @@ export default function QuestionCreate(): JSX.Element {
           ))}
         </QuestionGroup>
       </QuestionCreateMain>
+      <Modal ref={winRef} gridTemplate={GridTemplate}>
+        <CloseModalButton
+          icon="fas fa-times"
+          onClick={() => {
+            setWinVisible(false);
+          }}
+        />
+        <ModalTitle>제한 시간을 정하세요</ModalTitle>
+        <TimerSet />
+        <StartButton>시작하기</StartButton>
+      </Modal>
     </>
   );
 }
