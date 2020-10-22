@@ -1,3 +1,4 @@
+import { MutableRefObject, forwardRef } from 'react';
 import { FlattenSimpleInterpolation } from 'styled-components';
 import * as S from './style';
 
@@ -6,10 +7,14 @@ interface ModalProps {
   children: JSX.Element[];
 }
 
-export default function Modal({ children, gridTemplate }: ModalProps): JSX.Element {
-  return (
-    <S.ModalContainer>
-      <S.ModalInner gridTemplate={gridTemplate}>{children}</S.ModalInner>
-    </S.ModalContainer>
-  );
-}
+const Modal = forwardRef(
+  (props: ModalProps, ref: MutableRefObject<HTMLDivElement>): JSX.Element => {
+    return (
+      <S.ModalContainer ref={ref}>
+        <S.ModalInner gridTemplate={props.gridTemplate}>{props.children}</S.ModalInner>
+      </S.ModalContainer>
+    );
+  },
+);
+
+export default Modal;
