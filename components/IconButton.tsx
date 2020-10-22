@@ -1,24 +1,26 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
-  font-size: 1.5rem;
-  border: none;
-  background: none;
-
-  & > i {
-    color: ${(props) => props.theme.color.blue};
-  }
-`;
-
 interface IconButtonProps {
+  className?: string;
   icon: string;
   onClick: (e: React.MouseEvent) => void;
 }
 
+const Button = styled.button`
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  color: ${(props) => props.theme.color.blue};
+`;
+
 export default function IconButton(props: IconButtonProps): JSX.Element {
   return (
-    <Button onClick={props.onClick}>
+    <Button className={props.className} onClick={props.onClick}>
       <i className={props.icon} />
     </Button>
   );
 }
+
+IconButton.defaultProps = {
+  className: '',
+};
