@@ -1,5 +1,5 @@
 import { FormEvent, useState, useEffect, ChangeEvent } from 'react';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import { useWinVisibility } from '../hooks';
 import {
   Header,
@@ -37,7 +37,7 @@ const QUESTIONS = 'Questions'; // localStorage key
 export default function QuestionCreate(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
-  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>();
+  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>('grid');
 
   // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
   useEffect(() => {

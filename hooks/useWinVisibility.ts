@@ -1,14 +1,13 @@
 import { MutableRefObject, useRef } from 'react';
 
-export default function useWinVisibility<T extends HTMLElement>(): [
-  MutableRefObject<T>,
-  (visible: boolean) => void,
-] {
+export default function useWinVisibility<T extends HTMLElement>(
+  initialDisplay: string,
+): [MutableRefObject<T>, (visible: boolean) => void] {
   const winRef = useRef<T>();
 
   const setWinVisible = (visible: boolean) => {
     if (visible) {
-      winRef.current.style.display = 'grid';
+      winRef.current.style.display = initialDisplay;
     } else {
       winRef.current.style.display = 'none';
     }
