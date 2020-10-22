@@ -9,3 +9,4 @@ export { default as QuestionCreateMain } from './QuestionCreateMain';
 export { default as Modal } from './Modal';
 export { default as CloseModalButton } from './CloseModalButton';
 export { default as ModalTitle } from './ModalTitle';
+export { default as TimerSet } from './TimerSet';
