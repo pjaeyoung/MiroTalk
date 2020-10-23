@@ -21,7 +21,7 @@ export const Timer = styled.input`
   box-shadow: 3px 2px 5px 1px rgba(0, 0, 0, 0.2);
 `;
 
-export const CountBtn = styled(IconButton)`
+export const CountButton = styled(IconButton)`
   display: flex;
   justify-content: center;
   align-items: center;
