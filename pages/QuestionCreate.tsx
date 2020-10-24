@@ -32,12 +32,18 @@ interface Question {
   isSelected: boolean;
 }
 
+enum MODE {
+  VIDEO = '화상',
+  CHAT = '채팅',
+}
+
 const QUESTIONS = 'Questions'; // localStorage key
 
 export default function QuestionCreate(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
-  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>('grid');
+  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>('flex');
+  const [mode, setMode] = useState<MODE>(MODE.VIDEO);
 
   // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
   useEffect(() => {
@@ -91,7 +97,7 @@ export default function QuestionCreate(): JSX.Element {
       <Header>
         <IconButton icon="fas fa-bars" onClick={() => {}} />
         <Logo />
-        <ModeButtons />
+        <ModeButtons setMode={(mode:MODE)=>{setWinVisible(true); setMode(mode);}} />
       </Header>
       <QuestionCreateMain>
         <QuestionForm value={input} onSubmit={onSubmit} onChange={onChange} />

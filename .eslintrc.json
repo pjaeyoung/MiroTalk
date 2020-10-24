@@ -54,7 +54,8 @@
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "@typescript-eslint/no-var-requires": 0,
     "import/no-extraneous-dependencies": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "no-shadow": "off",
   },
   "globals": {
     "React": "writable"

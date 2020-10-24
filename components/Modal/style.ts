@@ -1,7 +1,7 @@
 import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
 export const ModalContainer = styled.div`
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
