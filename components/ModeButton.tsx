@@ -14,6 +14,14 @@ const Button = styled.button`
   & > span {
     margin-left: 0.5rem;
   }
+
+  &:hover{
+    opacity:0.8;
+  }
+
+  &:active{
+    transform:scale(0.8);
+  }
 `;
 
 interface ModeButtonProps {
