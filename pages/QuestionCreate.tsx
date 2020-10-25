@@ -97,7 +97,7 @@ export default function QuestionCreate(): JSX.Element {
       <Header>
         <IconButton icon="fas fa-bars" onClick={() => {}} />
         <Logo />
-        <ModeButtons disabled={questions.length === 0} setMode={(mode:MODE)=>{setWinVisible(true); setMode(mode);}} />
+        <ModeButtons disabled={questions.length === 0} setMode={(newMode:MODE)=>{setWinVisible(true); setMode(newMode);}} />
       </Header>
       <QuestionCreateMain>
         <QuestionForm value={input} onSubmit={onSubmit} onChange={onChange} />

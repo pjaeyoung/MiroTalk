@@ -16,7 +16,7 @@ interface ModeButtonsProps {
 
 export default function ModeButtons({setMode,disabled}:ModeButtonsProps): JSX.Element {
   const onClick = (e:React.MouseEvent<HTMLButtonElement>)=>{
-    const target = e.target as HTMLButtonElement;
+    const target = e.currentTarget as HTMLElement;
     setMode(target.getAttribute('name') as MODE);
   }
 

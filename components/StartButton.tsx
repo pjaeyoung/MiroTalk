@@ -23,5 +23,5 @@ interface StartButtonProps{
 }
 
 export default function StartButton(props:StartButtonProps):JSX.Element{
-  return <Link {...props}><Button>{props.children}</Button></Link>
+  return <Link {...props}><Button className='btn-start'>{props.children}</Button></Link>
 }
