@@ -92,7 +92,7 @@ describe('질문작성페이지 테스트', () => {
     afterEach(()=>{
       cy.go('back');
     });
-    
+
     it('chat버튼으로 모달창을 출력 후 start 버튼을 클릭하면 ChatMode 페이지로 전환해야 합니다.',()=>{
       cy.get('button[name=ChatMode]').trigger('click');
       cy.get('.modal .btn-start').trigger('click');
@@ -110,3 +110,5 @@ describe('질문작성페이지 테스트', () => {
     });
   })
 });
+
+export {}
