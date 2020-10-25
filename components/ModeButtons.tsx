@@ -1,3 +1,4 @@
+import { props } from 'cypress/types/bluebird';
 import styled from 'styled-components';
 import ModeButton from './ModeButton';
 
@@ -9,18 +10,20 @@ enum MODE {
 }
 
 interface ModeButtonsProps {
+  disabled:boolean;
   setMode:(mode:MODE)=>void;
 }
 
-export default function ModeButtons({setMode}:ModeButtonsProps): JSX.Element {
+export default function ModeButtons({setMode,disabled}:ModeButtonsProps): JSX.Element {
   const onClick = (e:React.MouseEvent<HTMLButtonElement>)=>{
     const target = e.target as HTMLButtonElement;
     setMode(target.textContent as MODE);
   }
+
   return (
     <ModeButtonContainer>
-      <ModeButton icon="fas fa-video" text={MODE.VIDEO} onClick={onClick} />
-      <ModeButton icon="fas fa-comment" text={MODE.CHAT} onClick={onClick} />
+      <ModeButton name='video' disabled={disabled} icon="fas fa-video" text={MODE.VIDEO} onClick={onClick} />
+      <ModeButton name='chat' disabled={disabled} icon="fas fa-comment" text={MODE.CHAT} onClick={onClick} />
     </ModeButtonContainer>
   );
 }
