@@ -33,8 +33,8 @@ interface Question {
 }
 
 enum MODE {
-  VIDEO = '화상',
-  CHAT = '채팅',
+  VIDEO = 'VideoMode',
+  CHAT = 'ChatMode',
 }
 
 const QUESTIONS = 'Questions'; // localStorage key
@@ -122,7 +122,7 @@ export default function QuestionCreate(): JSX.Element {
         />
         <ModalTitle>제한 시간을 정하세요</ModalTitle>
         <TimerSet />
-        <StartButton className='btn-start'>시작하기</StartButton>
+        <StartButton className='btn-start' href={`/${mode}`}><a>시작하기</a></StartButton>
       </Modal>
     </>
   );
