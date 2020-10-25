@@ -114,6 +114,7 @@ export default function QuestionCreate(): JSX.Element {
       </QuestionCreateMain>
       <Modal ref={winRef} gridTemplate={GridTemplate}>
         <CloseModalButton
+          className='btn-close'
           icon="fas fa-times"
           onClick={() => {
             setWinVisible(false);
@@ -121,7 +122,7 @@ export default function QuestionCreate(): JSX.Element {
         />
         <ModalTitle>제한 시간을 정하세요</ModalTitle>
         <TimerSet />
-        <StartButton>시작하기</StartButton>
+        <StartButton className='btn-start'>시작하기</StartButton>
       </Modal>
     </>
   );
