@@ -8,6 +8,7 @@ const Button = styled.a`
   border-radius: 0;
   color: ${(props) => props.theme.color.grey};
   font-size: 1.2rem;
+  cursor: pointer;
   &:hover{
     color: ${(props) => props.theme.color.blue};
     border-bottom: 1px solid ${(props) => props.theme.color.blue};
