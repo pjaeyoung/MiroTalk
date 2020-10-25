@@ -122,7 +122,7 @@ export default function QuestionCreate(): JSX.Element {
         />
         <ModalTitle>제한 시간을 정하세요</ModalTitle>
         <TimerSet />
-        <StartButton className='btn-start' href={`/${mode}`}><a>시작하기</a></StartButton>
+        <StartButton href={`/${mode}`}>시작하기</StartButton>
       </Modal>
     </>
   );
