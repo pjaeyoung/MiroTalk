@@ -59,13 +59,13 @@ describe('질문작성페이지 테스트', () => {
     cy.get('li > div > button:last-of-type').each(($btnDelete)=>{
       $btnDelete.trigger('click');
     })
-    cy.get('button[name=chat]').should('have.attr','disabled');
-    cy.get('button[name=video').should('have.attr','disabled');
+    cy.get('button[name=ChatMode]').should('have.attr','disabled');
+    cy.get('button[name=VideoMode').should('have.attr','disabled');
   });
 
-  describe('모달창',()=>{
+  describe('모달창 기능',()=>{
     beforeEach(()=>{
-      cy.get('button[name=chat]').trigger('click');
+      cy.get('button[name=ChatMode]').trigger('click');
     });
 
     afterEach(()=>{
@@ -86,8 +86,15 @@ describe('질문작성페이지 테스트', () => {
         input.type(received).should('contain.value',expected);
       });
     });
+  });
 
+  describe('페이지 전환',()=>{
+    afterEach(()=>{
+      cy.go('back');
+    });
+    
     it('chat버튼으로 모달창을 출력 후 start 버튼을 클릭하면 ChatMode 페이지로 전환해야 합니다.',()=>{
+      cy.get('button[name=ChatMode]').trigger('click');
       cy.get('.modal .btn-start').trigger('click');
       cy.url().should((url)=>{
         expect(url.match(/(?<=\/)\w+$/)[0]).to.equals('ChatMode');
@@ -95,8 +102,7 @@ describe('질문작성페이지 테스트', () => {
     });
 
     it('video버튼으로 모달창을 출력 후 start 버튼을 클릭하면 VideoMode 페이지로 전환해야 합니다.',()=>{
-      cy.get('.modal .btn-close').trigger('click');
-      cy.get('button[name=video]').trigger('click');
+      cy.get('button[name=VideoMode]').trigger('click');
       cy.get('.modal .btn-start').trigger('click');
       cy.url().should((url)=>{
         expect(url.match(/(?<=\/)\w+$/)[0]).to.equals('VideoMode');
