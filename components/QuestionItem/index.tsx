@@ -40,7 +40,7 @@ export default function QuestionItem({
   const toggleSelected = (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
     const { tagName } = e.target as HTMLLIElement;
     // btn-move 제외 (이벤트 전파)
-    if (tagName === 'BUTTON' || tagName === 'path' || tagName === 'svg') return;
+    if (tagName === 'BUTTON' || tagName === 'path' || tagName === 'I') return;
     setSelected((prev) => !prev);
   };
 

@@ -1,5 +1,5 @@
 import { FormEvent, useState, useEffect, ChangeEvent } from 'react';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import { useWinVisibility } from '../hooks';
 import {
   Header,
@@ -32,12 +32,18 @@ interface Question {
   isSelected: boolean;
 }
 
+enum MODE {
+  VIDEO = 'VideoMode',
+  CHAT = 'ChatMode',
+}
+
 const QUESTIONS = 'Questions'; // localStorage key
 
 export default function QuestionCreate(): JSX.Element {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [input, setInput] = useState<string>('');
-  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>();
+  const [winRef, setWinVisible] = useWinVisibility<HTMLDivElement>('flex');
+  const [mode, setMode] = useState<MODE>(MODE.VIDEO);
 
   // 질문 생성/수정/삭제 할 때마다 localStorage 업데이트
   useEffect(() => {
@@ -91,7 +97,7 @@ export default function QuestionCreate(): JSX.Element {
       <Header>
         <IconButton icon="fas fa-bars" onClick={() => {}} />
         <Logo />
-        <ModeButtons />
+        <ModeButtons disabled={questions.length === 0} setMode={(newMode:MODE)=>{setWinVisible(true); setMode(newMode);}} />
       </Header>
       <QuestionCreateMain>
         <QuestionForm value={input} onSubmit={onSubmit} onChange={onChange} />
@@ -108,6 +114,7 @@ export default function QuestionCreate(): JSX.Element {
       </QuestionCreateMain>
       <Modal ref={winRef} gridTemplate={GridTemplate}>
         <CloseModalButton
+          className='btn-close'
           icon="fas fa-times"
           onClick={() => {
             setWinVisible(false);
@@ -115,7 +122,7 @@ export default function QuestionCreate(): JSX.Element {
         />
         <ModalTitle>제한 시간을 정하세요</ModalTitle>
         <TimerSet />
-        <StartButton>시작하기</StartButton>
+        <StartButton href={`/${mode}`}>시작하기</StartButton>
       </Modal>
     </>
   );

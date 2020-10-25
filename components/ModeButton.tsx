@@ -14,9 +14,19 @@ const Button = styled.button`
   & > span {
     margin-left: 0.5rem;
   }
+
+  &:hover{
+    opacity:0.8;
+  }
+
+  &:active{
+    transform:scale(0.8);
+  }
 `;
 
 interface ModeButtonProps {
+  disabled:boolean;
+  name:string;
   text: string;
   icon: string;
   onClick: (e: React.MouseEvent) => void;
@@ -24,7 +34,7 @@ interface ModeButtonProps {
 
 export default function ModeButton(props: ModeButtonProps): JSX.Element {
   return (
-    <Button onClick={props.onClick}>
+    <Button name={props.name} disabled={props.disabled} onClick={props.onClick}>
       <i className={props.icon} />
       <span>{props.text}</span>
     </Button>

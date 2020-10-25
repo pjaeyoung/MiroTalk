@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 interface IconButtonProps {
+  name?: string;
   className?: string;
   icon: string;
   onClick: (e: React.MouseEvent) => void;
@@ -15,7 +16,7 @@ const Button = styled.button`
 
 export default function IconButton(props: IconButtonProps): JSX.Element {
   return (
-    <Button className={props.className} onClick={props.onClick}>
+    <Button name={props.name} className={props.className} onClick={props.onClick}>
       <i className={props.icon} />
     </Button>
   );
@@ -23,4 +24,5 @@ export default function IconButton(props: IconButtonProps): JSX.Element {
 
 IconButton.defaultProps = {
   className: '',
+  name: '',
 };
